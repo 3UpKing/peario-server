@@ -1,4 +1,7 @@
 version: '3.8'
+networks:
+  traefik-net:
+    external: true
 services:
   peario-server:
     build: .
@@ -7,3 +10,7 @@ services:
     environment:
       - NODE_ENV=production
     restart: unless-stopped
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.pearioserver.rule=Host(`peario-server.84.8.135.166.sslip.io`)"
+      - "traefik.http.services.pearioserver.loadbalancer.server.port=8181"
