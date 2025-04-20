@@ -12,7 +12,7 @@ class WS {
     public events = new EventEmitter;
     public clients: Client[] = [];
 
-    constructor(server: http.Server, cleanInterval: number) {
+    constructor(server: https.Server, cleanInterval: number) {
         this.wss = new WebSocket.Server({ server });
         this.wss.on('connection', (socket: WebSocket) => {
             const client = new Client(socket);

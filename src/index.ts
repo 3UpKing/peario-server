@@ -8,20 +8,20 @@ import { RoomEvent, SyncEvent, MessageEvent, ErrorEvent, UserEvent } from './sha
 import RoomManager from './room';
 import { User } from './shared';
 
-// const server = https.createServer({
-//     cert: fs.readFileSync(PEM_CERT),
-//     key: fs.readFileSync(PEM_KEY)
-// }, (req, res) => {
-//     res.writeHead(200);
-//     res.end();
-// }).listen(PORT);
-
-const server = http.createServer((req, res) => {
+const server = https.createServer({
+    cert: fs.readFileSync(PEM_CERT),
+    key: fs.readFileSync(PEM_KEY)
+}, (req, res) => {
     res.writeHead(200);
     res.end();
-}).listen(PORT, () => {
-    console.log(`HTTP server running on port ${PORT}`);
-});
+}).listen(PORT);
+
+// const server = http.createServer((req, res) => {
+//     res.writeHead(200);
+//     res.end();
+// }).listen(PORT, () => {
+//     console.log(`HTTP server running on port ${PORT}`);
+// });
 
 console.log(`Listening on port ${PORT}`);
 
