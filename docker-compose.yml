@@ -2,7 +2,6 @@ version: '3.8'
 services:
   peario-server:
     build: .
-    container_name: peario-server
     ports:
       - "3001:8181"
     environment:
