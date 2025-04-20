@@ -1,6 +1,6 @@
 version: '3.8'
 services:
-  peario_server:
+  peario-server:
     build: .
     container_name: peario-server
     ports:
