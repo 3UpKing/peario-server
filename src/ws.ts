@@ -1,4 +1,5 @@
 import https from 'https';
+import http from 'http';
 import WebSocket from 'ws';
 import { EventEmitter } from 'events';
 import { Client, User } from './shared';
@@ -11,7 +12,7 @@ class WS {
     public events = new EventEmitter;
     public clients: Client[] = [];
 
-    constructor(server: https.Server, cleanInterval: number) {
+    constructor(server: http.Server, cleanInterval: number) {
         this.wss = new WebSocket.Server({ server });
         this.wss.on('connection', (socket: WebSocket) => {
             const client = new Client(socket);

@@ -1,5 +1,6 @@
 import fs from 'fs';
 import https from 'https';
+import http from 'http';
 import WS from './ws';
 import { PORT, PEM_CERT, PEM_KEY, INTERVAL_CLIENT_CHECK, INTERVAL_ROOM_UPDATE } from './common/config';
 import { ClientEvent, ClientNewRoom, CientJoinRoom, ClientMessage, ClientSync, ClientUserUpdate, ClientUpdateOwnership } from './shared/events/client';
@@ -7,13 +8,20 @@ import { RoomEvent, SyncEvent, MessageEvent, ErrorEvent, UserEvent } from './sha
 import RoomManager from './room';
 import { User } from './shared';
 
-const server = https.createServer({
-    cert: fs.readFileSync(PEM_CERT),
-    key: fs.readFileSync(PEM_KEY)
-}, (req, res) => {
+// const server = https.createServer({
+//     cert: fs.readFileSync(PEM_CERT),
+//     key: fs.readFileSync(PEM_KEY)
+// }, (req, res) => {
+//     res.writeHead(200);
+//     res.end();
+// }).listen(PORT);
+
+const server = http.createServer((req, res) => {
     res.writeHead(200);
     res.end();
-}).listen(PORT);
+}).listen(PORT, () => {
+    console.log(`HTTP server running on port ${PORT}`);
+});
 
 console.log(`Listening on port ${PORT}`);
 
